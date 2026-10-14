@@ -36,9 +36,9 @@
     </ul>
   </nav>
   <div class="affiche-corps">
-    <h1>Range,<br>une petite app pour Mac.</h1>
+    <h1>Vos téléchargements<br>se rangent tout seuls.</h1>
     <div class="affiche-texte">
-      <p>Locale, sans compte et sans télémétrie. Gratuite et sous licence MIT.</p>
+      <p>Factures, images, vidéos et installeurs trouvent leur place, sur votre Mac. Tout se défait d&#x27;un clic.</p>
       <p class="actions">
         <a class="btn" href="https://github.com/avialet/range/releases/latest" data-download>Télécharger</a>
         <a class="lien" href="https://github.com/avialet/range" rel="noopener">Voir le code</a>
@@ -46,7 +46,7 @@
     </div>
     <picture class="affiche-fenetre">
       <source media="(prefers-color-scheme: dark)" srcset="/img/fenetre-sombre.webp 1x, /img/fenetre-sombre@2x.webp 2x">
-      <img src="/img/fenetre-clair.webp" srcset="/img/fenetre-clair@2x.webp 2x" width="1000" height="720" alt="La fenêtre de Range" fetchpriority="high">
+      <img src="/img/fenetre-clair.webp" srcset="/img/fenetre-clair@2x.webp 2x" width="1000" height="720" alt="La fenêtre de Range : le premier ménage, installeurs et doublons à la corbeille, factures vers Documents" fetchpriority="high">
     </picture>
   </div>
 </header>
@@ -69,12 +69,12 @@
     
     <article class="fonction fonction--gauche">
       <div class="fonction-texte">
-        <h2>Première fonction</h2>
-        <p>À écrire : ce que fait l&#x27;app, en 25 mots au plus.</p>
+        <h2>Des règles prêtes</h2>
+        <p>Installeurs, doublons « nom (1) », archives déjà ouvertes, factures, captures, images, vidéos. Chaque règle s&#x27;éteint ou se règle : destination, sous-dossier, âge minimal.</p>
       </div>
       <picture class="fonction-image">
-        <source media="(prefers-color-scheme: dark)" srcset="/img/fenetre-sombre.webp 1x, /img/fenetre-sombre@2x.webp 2x">
-        <img src="/img/fenetre-clair.webp" srcset="/img/fenetre-clair@2x.webp 2x" width="1000" height="720" alt="La fenêtre de Range" loading="lazy">
+        <source media="(prefers-color-scheme: dark)" srcset="/img/regles-sombre.webp 1x, /img/regles-sombre@2x.webp 2x">
+        <img src="/img/regles-clair.webp" srcset="/img/regles-clair@2x.webp 2x" width="1000" height="720" alt="Les règles de Range : installeurs, doublons du navigateur, archives déjà ouvertes, factures, captures d&#x27;écran, images" loading="lazy">
       </picture>
     </article>
     
@@ -83,15 +83,29 @@
     
     <article class="fonction">
       <div class="fonction-texte">
-        <h2>Deuxième fonction</h2>
-        <p>À écrire : un détail qui compte, en 25 mots au plus.</p>
+        <h2>Rien ne se perd</h2>
+        <p>Jamais de suppression, la corbeille seulement. Chaque rangement se défait depuis le Journal, fichier par fichier ou lot entier, avec son nom d&#x27;origine.</p>
       </div>
       <picture class="fonction-image">
-        <source media="(prefers-color-scheme: dark)" srcset="/img/detail-sombre.webp 1x, /img/detail-sombre@2x.webp 2x">
-        <img src="/img/detail-clair.webp" srcset="/img/detail-clair@2x.webp 2x" width="1000" height="720" alt="Un détail de Range" loading="lazy">
+        <source media="(prefers-color-scheme: dark)" srcset="/img/journal-sombre.webp 1x, /img/journal-sombre@2x.webp 2x">
+        <img src="/img/journal-clair.webp" srcset="/img/journal-clair@2x.webp 2x" width="1000" height="720" alt="Le Journal de Range : les derniers rangements, chacun avec son bouton « Annuler ce lot »" loading="lazy">
       </picture>
     </article>
     
+    
+    
+    
+    
+    <figure class="figure">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="/img/proposition-sombre.webp 1x, /img/proposition-sombre@2x.webp 2x">
+        <img src="/img/proposition-clair.webp" srcset="/img/proposition-clair@2x.webp 2x" width="1000" height="720" alt="La proposition de rangement automatique après le premier ménage, avec les fichiers encore à ranger" loading="lazy">
+      </picture>
+      <figcaption>
+        <h2>Puis tout seul, si vous voulez</h2>
+        <p>Le premier ménage se fait à la main. Ensuite, Range peut ranger chaque nouveau téléchargement 10 min après son arrivée, jamais pendant qu&#x27;il se télécharge.</p>
+      </figcaption>
+    </figure>
     
     
   </section>
@@ -111,13 +125,38 @@
     <p class="actions"><a class="btn" href="https://github.com/avialet/range/releases/latest" data-download>Télécharger</a></p>
     
     <details class="question">
-      <summary>Pourquoi cet avertissement au premier lancement ?</summary>
-      <div>Range n'est ni signé avec un certificat Apple Developer ni notarisé, alors macOS bloque le premier lancement. Depuis macOS 15, l'ancien contournement « Contrôle-clic, puis Ouvrir » n'existe plus pour les apps non notarisées : le passage par Réglages Système est le seul chemin.</div>
+      <summary>Pourquoi cet avertissement au premier lancement ?</summary>
+      <div>Range est signée sans certificat Apple Developer et n'est pas notarisée, alors macOS bloque le premier lancement. Ouvrez Réglages Système › Confidentialité et sécurité, puis cliquez « Ouvrir quand même ». Depuis macOS 15, le contournement « Contrôle-clic, puis Ouvrir » n'existe plus.</div>
     </details>
     
     <details class="question">
-      <summary>Comment vérifier le fichier téléchargé ?</summary>
-      <div>Chaque version publie son empreinte SHA-256. Dans le dossier du téléchargement : <code>shasum -a 256 -c Range-X.Y.Z.dmg.sha256</code>.</div>
+      <summary>Pourquoi l&#x27;accès à Téléchargements et à Documents ?</summary>
+      <div>Téléchargements est le dossier que Range range, Documents reçoit les factures : macOS demande votre accord pour chacun. Comme Range n'est pas notarisée, macOS redemande l'accès après une mise à jour ; Range suspend alors le rangement et vous le signale.</div>
+    </details>
+    
+    <details class="question">
+      <summary>Et un fichier que je veux garder là ?</summary>
+      <div>Décochez-le dans À ranger. Un fichier remis en place depuis le Journal n'est plus rangé automatiquement. Les téléchargements en cours (<code>.download</code>, <code>.crdownload</code>, <code>.part</code>) et les images disque montées ne sont jamais touchés.</div>
+    </details>
+    
+    <details class="question">
+      <summary>Et si un fichier du même nom existe déjà ?</summary>
+      <div>Si c'est le même fichier, octet pour octet, la copie va à la corbeille. Sinon, le nouveau est renommé « nom 2 ». Rien n'est jamais écrasé.</div>
+    </details>
+    
+    <details class="question">
+      <summary>Comment Range reconnaît-elle une facture ?</summary>
+      <div>Sans IA : l'extension, le nom du fichier, l'adresse d'où il vient et sa date suffisent. Un PDF dont le nom ou l'origine parle de facture, de reçu ou d'invoice va dans Documents › Factures.</div>
+    </details>
+    
+    <details class="question">
+      <summary>Range fonctionne-t-elle avec l&#x27;app Vialet ?</summary>
+      <div>Oui. « Ranger maintenant », « Annuler le dernier rangement » et « Suspendre ou reprendre » apparaissent dans les actions rapides de Vialet, et l'icône de Range quitte alors la barre des menus. Les mêmes actions répondent aux liens <code>range://ranger</code>, <code>range://annuler</code> et <code>range://pause</code>.</div>
+    </details>
+    
+    <details class="question">
+      <summary>Comment vérifier le fichier téléchargé ?</summary>
+      <div>Chaque version publie son empreinte SHA-256. Dans le dossier du téléchargement : <code>shasum -a 256 -c Range-X.Y.Z.dmg.sha256</code>.</div>
     </details>
     
   </section>
@@ -125,7 +164,7 @@
   <section class="duo" aria-label="Confidentialité et code source">
     <div>
       <h2>Chez vous</h2>
-      <p>Range travaille en local, sur votre Mac : aucun compte, aucune télémétrie, aucun traceur. Un seul appel réseau, désactivable dans les réglages : la lecture de la dernière version publiée sur GitHub.</p>
+      <p>Range lit le nom, la taille, la date et l&#x27;adresse d&#x27;origine des fichiers de Téléchargements. Elle n&#x27;ouvre un fichier que pour comparer un doublon à son original ou lister le contenu d&#x27;un zip. Le journal et les règles restent dans un fichier SQLite local. Le seul appel réseau est la lecture de la dernière version publiée sur GitHub, désactivable dans les réglages.</p>
       <p class="donnees"><code>~/Library/Application Support/Range/range.sqlite</code></p>
     </div>
     <div>

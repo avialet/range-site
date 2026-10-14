@@ -4,22 +4,67 @@
   "domaine": "range.vialet.app",
   "depot": "avialet/range",
   "accroche": "Les téléchargements se rangent tout seuls.",
-  "titre": ["Range,", "une petite app pour Mac."],
-  "sous_titre": "Locale, sans compte et sans télémétrie. Gratuite et sous licence MIT.",
-  "hero": { "image": "fenetre", "alt": "La fenêtre de Range" },
+  "titre": ["Vos téléchargements", "se rangent tout seuls."],
+  "sous_titre": "Factures, images, vidéos et installeurs trouvent leur place, sur votre Mac. Tout se défait d'un clic.",
+  "hero": { "image": "fenetre", "alt": "La fenêtre de Range : le premier ménage, installeurs et doublons à la corbeille, factures vers Documents" },
   "fonctions": [
-    { "titre": "Première fonction", "texte": "À écrire : ce que fait l'app, en 25 mots au plus.", "image": "fenetre", "alt": "La fenêtre de Range" },
-    { "titre": "Deuxième fonction", "texte": "À écrire : un détail qui compte, en 25 mots au plus.", "image": "detail", "alt": "Un détail de Range" }
+    {
+      "titre": "Des règles prêtes",
+      "texte": "Installeurs, doublons « nom (1) », archives déjà ouvertes, factures, captures, images, vidéos. Chaque règle s'éteint ou se règle : destination, sous-dossier, âge minimal.",
+      "image": "regles",
+      "alt": "Les règles de Range : installeurs, doublons du navigateur, archives déjà ouvertes, factures, captures d'écran, images"
+    },
+    {
+      "titre": "Rien ne se perd",
+      "texte": "Jamais de suppression, la corbeille seulement. Chaque rangement se défait depuis le Journal, fichier par fichier ou lot entier, avec son nom d'origine.",
+      "image": "journal",
+      "alt": "Le Journal de Range : les derniers rangements, chacun avec son bouton « Annuler ce lot »"
+    },
+    {
+      "titre": "Puis tout seul, si vous voulez",
+      "texte": "Le premier ménage se fait à la main. Ensuite, Range peut ranger chaque nouveau téléchargement 10 min après son arrivée, jamais pendant qu'il se télécharge.",
+      "image": "proposition",
+      "alt": "La proposition de rangement automatique après le premier ménage, avec les fichiers encore à ranger",
+      "pleine_largeur": true
+    }
   ],
   "captures": [
-    { "nom": "fenetre", "source": "base-1" },
-    { "nom": "detail", "source": "base-2" }
+    { "nom": "fenetre", "source": "mainWindow" },
+    { "nom": "regles", "source": "regles" },
+    { "nom": "journal", "source": "journal" },
+    { "nom": "proposition", "source": "proposition" }
   ],
-  "confidentialite": "Range travaille en local, sur votre Mac : aucun compte, aucune télémétrie, aucun traceur. Un seul appel réseau, désactivable dans les réglages : la lecture de la dernière version publiée sur GitHub.",
+  "confidentialite": "Range lit le nom, la taille, la date et l'adresse d'origine des fichiers de Téléchargements. Elle n'ouvre un fichier que pour comparer un doublon à son original ou lister le contenu d'un zip. Le journal et les règles restent dans un fichier SQLite local. Le seul appel réseau est la lecture de la dernière version publiée sur GitHub, désactivable dans les réglages.",
   "donnees": "~/Library/Application Support/Range/range.sqlite",
   "faq": [
-    { "q": "Pourquoi cet avertissement au premier lancement ?", "r": "Range n'est ni signé avec un certificat Apple Developer ni notarisé, alors macOS bloque le premier lancement. Depuis macOS 15, l'ancien contournement « Contrôle-clic, puis Ouvrir » n'existe plus pour les apps non notarisées : le passage par Réglages Système est le seul chemin." },
-    { "q": "Comment vérifier le fichier téléchargé ?", "r": "Chaque version publie son empreinte SHA-256. Dans le dossier du téléchargement : <code>shasum -a 256 -c Range-X.Y.Z.dmg.sha256</code>." }
+    {
+      "q": "Pourquoi cet avertissement au premier lancement ?",
+      "r": "Range est signée sans certificat Apple Developer et n'est pas notarisée, alors macOS bloque le premier lancement. Ouvrez Réglages Système › Confidentialité et sécurité, puis cliquez « Ouvrir quand même ». Depuis macOS 15, le contournement « Contrôle-clic, puis Ouvrir » n'existe plus."
+    },
+    {
+      "q": "Pourquoi l'accès à Téléchargements et à Documents ?",
+      "r": "Téléchargements est le dossier que Range range, Documents reçoit les factures : macOS demande votre accord pour chacun. Comme Range n'est pas notarisée, macOS redemande l'accès après une mise à jour ; Range suspend alors le rangement et vous le signale."
+    },
+    {
+      "q": "Et un fichier que je veux garder là ?",
+      "r": "Décochez-le dans À ranger. Un fichier remis en place depuis le Journal n'est plus rangé automatiquement. Les téléchargements en cours (<code>.download</code>, <code>.crdownload</code>, <code>.part</code>) et les images disque montées ne sont jamais touchés."
+    },
+    {
+      "q": "Et si un fichier du même nom existe déjà ?",
+      "r": "Si c'est le même fichier, octet pour octet, la copie va à la corbeille. Sinon, le nouveau est renommé « nom 2 ». Rien n'est jamais écrasé."
+    },
+    {
+      "q": "Comment Range reconnaît-elle une facture ?",
+      "r": "Sans IA : l'extension, le nom du fichier, l'adresse d'où il vient et sa date suffisent. Un PDF dont le nom ou l'origine parle de facture, de reçu ou d'invoice va dans Documents › Factures."
+    },
+    {
+      "q": "Range fonctionne-t-elle avec l'app Vialet ?",
+      "r": "Oui. « Ranger maintenant », « Annuler le dernier rangement » et « Suspendre ou reprendre » apparaissent dans les actions rapides de Vialet, et l'icône de Range quitte alors la barre des menus. Les mêmes actions répondent aux liens <code>range://ranger</code>, <code>range://annuler</code> et <code>range://pause</code>."
+    },
+    {
+      "q": "Comment vérifier le fichier téléchargé ?",
+      "r": "Chaque version publie son empreinte SHA-256. Dans le dossier du téléchargement : <code>shasum -a 256 -c Range-X.Y.Z.dmg.sha256</code>."
+    }
   ],
   "libres": { "apres_hero": "", "apres_fonctions": "", "avant_installer": "" }
 }
