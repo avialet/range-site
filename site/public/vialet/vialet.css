@@ -1,0 +1,233 @@
+/* vialet.css : couche partagee des sites vialet.app (direction « affiche couleur »).
+   Copie telle quelle dans chaque site par scripts/sync-site.sh ; les teintes de l'app sont injectees
+   dans le <head> (--accent, --accent-bg, --accent-deep, --accent-pale, --accent-night, --night-ink). */
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/vialet/fonts/BricolageGrotesque-latin.woff2") format("woff2");
+  font-weight: 200 800; font-stretch: 75% 100%; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/vialet/fonts/BricolageGrotesque-latin-ext.woff2") format("woff2");
+  font-weight: 200 800; font-stretch: 75% 100%; font-style: normal; font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/vialet/fonts/JetBrainsMono-Regular.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/vialet/fonts/JetBrainsMono-Medium.woff2") format("woff2");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+
+:root {
+  /* Teintes par defaut (remplacees par le <head> de chaque site). */
+  --accent: #2F6FEB; --accent-bg: #2F6FEB; --accent-deep: #00001F;
+  --accent-pale: #EBF2FF; --accent-night: #0F1A2F; --night-ink: #C4D8FD;
+  /* Neutres, les memes que VialetKit. */
+  --paper: #F7F3EC; --ink: #1E2227; --ink-soft: #5B6068; --ink-faint: #9AA0A8; --line: #E0DCD3;
+  --page: var(--accent-pale);
+  --panel: rgba(255, 255, 255, .72);
+  --panel-line: rgba(30, 34, 39, .08);
+  --btn-bg: var(--accent-deep); --btn-ink: #FFFFFF;
+  --display: "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  --text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --radius: 14px; --radius-s: 8px;
+  --nav: 68px; --col: 1120px; --gutter: clamp(16px, 4vw, 40px);
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14161B; --ink: #EDE9E2; --ink-soft: #A6ACB4; --ink-faint: #6A7079; --line: #2D313A;
+    --page: var(--accent-night);
+    --ink: var(--night-ink);
+    --panel: rgba(255, 255, 255, .05);
+    --panel-line: rgba(255, 255, 255, .09);
+    --btn-bg: var(--accent-bg); --btn-ink: var(--accent-deep);
+  }
+}
+
+/* Base */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-padding-top: 24px; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--page); color: var(--ink);
+  font-family: var(--text); font-size: 17px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+img, svg { display: block; max-width: 100%; height: auto; }
+h1, h2, h3 { font-family: var(--display); font-optical-sizing: auto; margin: 0; line-height: 1.05; letter-spacing: -.02em; }
+h1 { font-weight: 800; font-size: clamp(40px, 5.8vw, 74px); }
+h2 { font-weight: 700; font-size: clamp(28px, 3.6vw, 44px); }
+h3 { font-weight: 700; font-size: 19px; letter-spacing: -.01em; line-height: 1.25; }
+p { margin: 0 0 1em; }
+a { color: inherit; }
+code {
+  font-family: var(--mono); font-size: .86em; padding: .15em .5em; border-radius: var(--radius-s);
+  background: var(--panel); border: 1px solid var(--panel-line); white-space: nowrap;
+}
+.colonne { width: 100%; max-width: var(--col); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
+.lien { color: inherit; font-weight: 600; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: .22em; }
+.lien:hover { text-decoration-thickness: 2.5px; }
+
+/* Plaque : carre arrondi de l'app, SVG inline fourni par le rendu. */
+.plaque { width: 28px; height: 28px; flex: none; border-radius: 22.45%; }
+.plaque svg { width: 100%; height: 100%; }
+
+/* Boutons : une seule echelle de rayons, un seul libelle « Telecharger ». */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 52px; padding: 0 26px; border-radius: var(--radius); border: 0; cursor: pointer;
+  font: 600 17px/1 var(--text); text-decoration: none; color: var(--btn-ink); background: var(--btn-bg);
+  transition: transform .18s cubic-bezier(.16, 1, .3, 1), background-color .18s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: scale(.98); }
+.btn:focus-visible, .lien:focus-visible, .nav a:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; border-radius: var(--radius-s); }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin: 0; }
+
+/* Affiche : l'en-tete entier prend la couleur de l'app, le texte sa teinte sombre, la fenetre flotte. */
+.affiche {
+  background: var(--accent-bg); color: var(--accent-deep);
+  --btn-bg: var(--accent-deep); --btn-ink: #FFFFFF;
+  overflow: hidden;
+}
+.nav {
+  min-height: var(--nav); display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  max-width: var(--col); margin: 0 auto; padding: 0 var(--gutter);
+}
+.nav ul { list-style: none; display: flex; gap: 26px; margin: 0; padding: 0; }
+.nav a { text-decoration: none; font-weight: 600; font-size: 15.5px; }
+.nav ul a:hover { text-decoration: underline; text-underline-offset: .25em; }
+.marque { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; }
+.marque span { font-family: var(--display); font-weight: 700; font-size: 21px; letter-spacing: -.02em; }
+/* Le titre prend toute la largeur (deux lignes), puis le sous-texte et la fenetre se partagent la ligne. */
+.affiche-corps {
+  max-width: var(--col); margin: 0 auto; padding: 40px var(--gutter) 0;
+  min-height: calc(100svh - var(--nav)); max-height: 860px;
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-rows: auto 1fr;
+  align-items: start; column-gap: 48px; row-gap: 28px;
+}
+.affiche-corps h1 { grid-column: 1 / -1; max-width: 30ch; }
+.affiche-texte { padding-top: 6px; }
+.affiche-texte p { font-size: clamp(17px, 1.6vw, 20px); line-height: 1.5; max-width: 34ch; margin: 0 0 30px; }
+.affiche-texte .actions { margin: 0 0 32px; }
+.affiche-fenetre { position: relative; align-self: end; margin: 0; min-width: 0; }
+.affiche-fenetre img {
+  width: 112%; max-width: none; height: auto;
+  border-radius: var(--radius) var(--radius) 0 0;
+  box-shadow: 0 40px 80px -30px color-mix(in srgb, var(--accent-deep) 65%, transparent), 0 0 0 1px color-mix(in srgb, var(--accent-deep) 14%, transparent);
+}
+
+/* Fiche : bande de metadonnees en monospace, juste sous l'affiche. */
+.fiche { border-bottom: 1px solid var(--panel-line); background: var(--panel); }
+.fiche dl {
+  max-width: var(--col); margin: 0 auto; padding: 18px var(--gutter);
+  display: flex; flex-wrap: wrap; gap: 10px 40px; font-family: var(--mono); font-size: 13.5px;
+}
+.fiche div { display: flex; gap: 10px; align-items: baseline; }
+.fiche dt { color: var(--ink-faint); font-weight: 400; }
+.fiche dd { margin: 0; font-weight: 500; color: var(--ink); }
+.fiche a { color: inherit; text-decoration: underline; text-underline-offset: .22em; }
+
+/* Fonctions : texte / vraie capture, en alternance, puis une figure pleine largeur. */
+.fonctions { max-width: var(--col); margin: 0 auto; padding: 72px var(--gutter) 24px; display: grid; gap: 80px; }
+.fonction { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: center; }
+.fonction--gauche .fonction-texte { order: 0; }
+.fonction--gauche .fonction-image { order: 1; }
+.fonction:not(.fonction--gauche) .fonction-texte { order: 1; }
+.fonction:not(.fonction--gauche) .fonction-image { order: 0; }
+.fonction-texte p { color: var(--ink-soft); font-size: 18px; max-width: 36ch; margin: 16px 0 0; }
+.fonction-image, .figure { margin: 0; min-width: 0; }
+.fonction-image img, .figure img {
+  border-radius: var(--radius);
+  box-shadow: 0 24px 48px -28px rgba(0, 0, 0, .45), 0 0 0 1px var(--panel-line);
+}
+.figure { display: grid; gap: 22px; }
+.figure figcaption { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+.figure figcaption p { color: var(--ink-soft); font-size: 18px; margin: 0; }
+
+/* Installation : quatre etapes en grille, un bouton, deux questions. */
+.installer { max-width: var(--col); margin: 0 auto; padding: 72px var(--gutter) 24px; }
+.installer > p { color: var(--ink-soft); font-size: 18px; max-width: 58ch; margin: 14px 0 32px; }
+.etapes {
+  list-style: none; counter-reset: etape; margin: 0 0 34px; padding: 0;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px;
+}
+.etapes li {
+  counter-increment: etape; position: relative;
+  background: var(--panel); border: 1px solid var(--panel-line); border-radius: var(--radius);
+  padding: 22px 24px 22px 76px;
+}
+.etapes li::before {
+  content: counter(etape); position: absolute; left: 24px; top: 20px;
+  font-family: var(--display); font-weight: 800; font-size: 34px; line-height: 1; color: var(--accent-bg);
+}
+.etapes p { margin: 6px 0 0; color: var(--ink-soft); font-size: 16px; line-height: 1.5; }
+.question {
+  max-width: 760px; margin: 14px 0 0; padding: 4px 20px;
+  background: var(--panel); border: 1px solid var(--panel-line); border-radius: var(--radius);
+}
+.question:first-of-type { margin-top: 40px; }
+.question summary { cursor: pointer; padding: 13px 0; font-weight: 600; }
+.question div { padding: 0 0 14px; color: var(--ink-soft); font-size: 16px; }
+.question div code { white-space: normal; overflow-wrap: anywhere; }
+
+/* Duo : confidentialite et code source, deux colonnes. */
+.duo {
+  max-width: var(--col); margin: 0 auto; padding: 72px var(--gutter) 80px;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px;
+}
+.duo p { color: var(--ink-soft); font-size: 17px; margin: 14px 0 0; }
+.duo .donnees { font-size: 15px; }
+.duo .donnees code { white-space: normal; word-break: break-all; }
+
+/* Pied */
+.pied {
+  border-top: 1px solid var(--panel-line);
+  max-width: var(--col); margin: 0 auto; padding: 36px var(--gutter) 56px;
+  display: grid; grid-template-columns: 1fr auto; gap: 18px 40px; align-items: center;
+}
+.pied .marque span { font-family: var(--text); font-weight: 600; font-size: 16px; letter-spacing: 0; }
+.pied ul { list-style: none; display: flex; flex-wrap: wrap; gap: 22px; margin: 0; padding: 0; }
+.pied ul a { color: var(--ink-soft); text-decoration: none; font-weight: 600; font-size: 15px; }
+.pied ul a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: .25em; }
+.pied > p { grid-column: 1 / -1; margin: 0; color: var(--ink-faint); font-size: 14px; }
+
+/* Arrivee de l'affiche (une seule fois, motivee : hierarchie texte puis fenetre). */
+@media (prefers-reduced-motion: no-preference) {
+  html.pret .affiche-texte > * { animation: monte .7s cubic-bezier(.16, 1, .3, 1) both; }
+  html.pret .affiche-texte > :nth-child(2) { animation-delay: .08s; }
+  html.pret .affiche-texte > :nth-child(3) { animation-delay: .16s; }
+  html.pret .affiche-fenetre { animation: glisse .9s cubic-bezier(.16, 1, .3, 1) .12s both; }
+  @keyframes monte { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes glisse { from { opacity: 0; transform: translateX(32px); } to { opacity: 1; transform: none; } }
+}
+
+/* Reactif */
+@media (max-width: 1023px) {
+  .affiche-corps { grid-template-columns: 1fr; grid-template-rows: auto; row-gap: 22px; min-height: 0; max-height: none; padding-top: 24px; }
+  .affiche-corps h1 { grid-column: auto; }
+  .affiche-texte .actions { margin-bottom: 8px; }
+  .affiche-fenetre img { width: 100%; }
+  .fonction, .fonction--gauche { grid-template-columns: 1fr; gap: 22px; }
+  .fonction:not(.fonction--gauche) .fonction-texte, .fonction--gauche .fonction-texte { order: 0; }
+  .fonction:not(.fonction--gauche) .fonction-image, .fonction--gauche .fonction-image { order: 1; }
+  .figure figcaption { grid-template-columns: 1fr; gap: 10px; }
+}
+@media (max-width: 767px) {
+  body { font-size: 16px; }
+  .nav ul li:not(:nth-child(2)) { display: none; }
+  .fonctions, .installer, .duo { padding-top: 56px; }
+  .fonctions { gap: 56px; }
+  .etapes { grid-template-columns: 1fr; }
+  .duo { grid-template-columns: 1fr; gap: 36px; }
+  .pied { grid-template-columns: 1fr; }
+  .affiche-texte .actions .btn { width: 100%; }
+}

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://range.vialet.app/sitemap.xml

@@ -1,0 +1,25 @@
+{
+  "app": "Range",
+  "affiche": "Range",
+  "domaine": "range.vialet.app",
+  "depot": "avialet/range",
+  "accroche": "Les téléchargements se rangent tout seuls.",
+  "titre": ["Range,", "une petite app pour Mac."],
+  "sous_titre": "Locale, sans compte et sans télémétrie. Gratuite et sous licence MIT.",
+  "hero": { "image": "fenetre", "alt": "La fenêtre de Range" },
+  "fonctions": [
+    { "titre": "Première fonction", "texte": "À écrire : ce que fait l'app, en 25 mots au plus.", "image": "fenetre", "alt": "La fenêtre de Range" },
+    { "titre": "Deuxième fonction", "texte": "À écrire : un détail qui compte, en 25 mots au plus.", "image": "detail", "alt": "Un détail de Range" }
+  ],
+  "captures": [
+    { "nom": "fenetre", "source": "base-1" },
+    { "nom": "detail", "source": "base-2" }
+  ],
+  "confidentialite": "Range travaille en local, sur votre Mac : aucun compte, aucune télémétrie, aucun traceur. Un seul appel réseau, désactivable dans les réglages : la lecture de la dernière version publiée sur GitHub.",
+  "donnees": "~/Library/Application Support/Range/range.sqlite",
+  "faq": [
+    { "q": "Pourquoi cet avertissement au premier lancement ?", "r": "Range n'est ni signé avec un certificat Apple Developer ni notarisé, alors macOS bloque le premier lancement. Depuis macOS 15, l'ancien contournement « Contrôle-clic, puis Ouvrir » n'existe plus pour les apps non notarisées : le passage par Réglages Système est le seul chemin." },
+    { "q": "Comment vérifier le fichier téléchargé ?", "r": "Chaque version publie son empreinte SHA-256. Dans le dossier du téléchargement : <code>shasum -a 256 -c Range-X.Y.Z.dmg.sha256</code>." }
+  ],
+  "libres": { "apres_hero": "", "apres_fonctions": "", "avant_installer": "" }
+}
